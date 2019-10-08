@@ -10,7 +10,6 @@ from rest_framework.authentication import TokenAuthentication
 
 from .serializer import UserSerializer
 
-
 class AuthViewSet(ViewSet):
     """ User login/register view
     """

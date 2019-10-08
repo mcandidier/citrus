@@ -1,0 +1,20 @@
+{% load static %}
+
+<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Auth</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+        <app-root></app-root>
+        <script type="text/javascript" src="{% static 'auth/dist/auth/runtime.js' %}"></script>
+        <script type="text/javascript" src="{% static 'auth/dist/auth/polyfills.js' %}">
+        </script><script type="text/javascript" src="{% static 'auth/dist/auth/styles.js' %}">
+        </script><script type="text/javascript" src="{% static 'auth/dist/auth/vendor.js' %}">
+        </script><script type="text/javascript" src="{% static 'auth/dist/auth/main.js' %}"></script>
+    </body>
+</html>
