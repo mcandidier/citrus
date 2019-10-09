@@ -5,10 +5,14 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
+
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 
-from .serializer import UserSerializer
+from .serializer import UserSerializer, ProfileSerializer
+
+from .models import Profile
 
 class AuthViewSet(ViewSet):
     """ User login/register view
@@ -47,3 +51,22 @@ class UserViewSet(ViewSet):
     
     def update(self, *args, **kwargs):
         pass
+
+
+class ProfileView(APIView):
+    """ Profle view
+        update user profile avatar
+    """
+
+    authentication_classes = (TokenAuthentication,)
+    serializer = ProfileSerializer
+    parser_classes = (MultiPartParser,)
+
+    def post(self, *args, **kwargs):
+
+        profile = get_object_or_404(Profile, user=self.request.user)
+        serializer = self.serializer(profile, data=self.request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)

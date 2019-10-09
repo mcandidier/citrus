@@ -1,0 +1,12 @@
+<form 
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  enctype="multipart/form-data"  
+  novalidate>
+  <div class="form-group">
+    <label for="avatar">avatar
+    </label>
+    <input type="file" formControlName="profile" (change)="onChange($event)" required>
+  </div>
+  <button type="submit">Update</button>
+</form>

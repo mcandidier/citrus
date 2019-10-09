@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit');
     if (this.form.valid) {
       console.log('valid');
       console.log(this.form.value);
