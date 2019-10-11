@@ -9,9 +9,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  username: FormControl;
-  password: FormControl;
+  private form: FormGroup;
+  private username: FormControl;
+  private password: FormControl;
+  private errorMsg: Boolean;
 
   constructor(private authService:AuthService ) { }
 
@@ -41,7 +42,12 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       console.log('valid');
       console.log(this.form.value);
-      this.authService.login(this.form.value);
+      this.authService.login(this.form.value)
+        .subscribe(res => {
+          localStorage.setItem('access-token', res['token']);
+        }, error => {
+          this.errorMsg = true;
+        });
     } else {
       this.validateAllFormFields(this.form);
     }

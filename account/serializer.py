@@ -10,9 +10,11 @@ class UserSerializer(ModelSerializer):
         fields = ['id', 'username', 'password']
         read_only_fields = ['id', 'password',]
 
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+    # def create(self, validated_data):
+    #     user = User.objects.create_user(**validated_data)
+    #     raw_password = validated_data.get('password')
+    #     user.set_password(raw_password)
+    #     return user
 
 
 class ProfileSerializer(ModelSerializer):

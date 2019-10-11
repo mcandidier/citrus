@@ -27,8 +27,9 @@ class AuthViewSet(ViewSet):
         if username and password:
             user = authenticate(username=username, password=password)
             if user:
-                token, _ = Token.objects.get_or_create(user=user)
+                token, created = Token.objects.get_or_create(user=user)
                 return Response({'token': token.key}, status=200)
+        print('error')
         return Response(status=400)
 
     def register_user(self, *args, **kwargs):
@@ -63,8 +64,9 @@ class ProfileView(APIView):
     parser_classes = (MultiPartParser,)
 
     def post(self, *args, **kwargs):
-
-        profile = get_object_or_404(Profile, user=self.request.user)
+        profile, _ = Profile.objects.get_or_create(
+            user=self.request.user
+        )    
         serializer = self.serializer(profile, data=self.request.data)
         if serializer.is_valid():
             serializer.save()
