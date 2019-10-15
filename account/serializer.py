@@ -8,13 +8,13 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'password']
-        read_only_fields = ['id', 'password',]
+        read_only_fields = ['id']
 
-    # def create(self, validated_data):
-    #     user = User.objects.create_user(**validated_data)
-    #     raw_password = validated_data.get('password')
-    #     user.set_password(raw_password)
-    #     return user
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+        # raw_password = validated_data.get('password')
+        # user.set_password(raw_password)
+        # return user
 
 
 class ProfileSerializer(ModelSerializer):

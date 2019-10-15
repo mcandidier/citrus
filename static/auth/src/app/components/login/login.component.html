@@ -21,6 +21,6 @@
       <input type="password" formControlName="password" required/>
       <span *ngIf="password.errors && (password.dirty || password.touched)">This field is required.</span>
     </div>
-    <div *ngIf="errorMsg">Invalid password.</div>
+    <div *ngIf="errorMsg">Wrong password. Try again or click Forgot password to reset it.</div>
   <button type="submit">Login</button>
 </form>

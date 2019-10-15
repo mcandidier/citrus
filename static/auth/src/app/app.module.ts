@@ -10,12 +10,14 @@ import { LoginComponent } from './components/login/login.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 import { Interceptor } from './interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UpdateProfileComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

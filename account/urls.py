@@ -13,8 +13,8 @@ users_url = UserViewSet.as_view({
 })
 
 urlpatterns = [
+    path('accounts/register/', register),
     path('accounts/login/', login),
-    path('accounts/register/',register),
     path('accounts/', users_url),
     path('accounts/update/', ProfileView.as_view()),
 ]
