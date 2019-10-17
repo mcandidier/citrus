@@ -29,6 +29,8 @@
     <span *ngIf="password2.errors?.required && (password2.dirty || password2.touched)">This field is required.</span>
     <span *ngIf="password2.errors?.mismatch && !password2.errors?.required">Password mismatch.</span>
   </div>
+
+  <span class="error">{{errorMsg.error?.username}}</span>
   <div>
     <button type="submit">Register</button>
   </div>

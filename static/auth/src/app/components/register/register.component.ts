@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   public username: FormControl;
   public password: FormControl;
   public password2: FormControl;
-
+  public errorMsg: Object = null;
   constructor(private authService: AuthService, private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -33,14 +33,20 @@ export class RegisterComponent implements OnInit {
 
   validatePassword(pass1: any) {
     return (control: AbstractControl) => {
-      return pass1 === control.value ? null : {'mismatch': true};
+      return pass1.value === control.value ? null : {'mismatch': true};
     };
   }
 
   public onSubmit() {
-    console.log(this.form.valid, 'blah');
     if (this.form.valid) {
-      this.authService.register(this.form.value);
+      this.authService.register(this.form.value)
+      .subscribe(data => {
+        console.log(data);
+      }, (err) => {
+        this.errorMsg  = err;
+        console.log(err);
+      });
+
     }
   }
 }

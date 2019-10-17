@@ -1,27 +1,24 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   public login(data: any) {
     const url = '/api/accounts/login/';
-    return this.http.post(url, data);
+    return this._http.post(url, data);
   }
 
   public register(data: any) {
     const url = '/api/accounts/register/';
     console.log('register');
-    this.http.post(url, data)
-    .subscribe(res =>
-      console.log(res)
-    );
+    return this._http.post(url, data);
   }
 
   public update(data: any) {
@@ -29,7 +26,7 @@ export class AuthService {
     // headers.set('Content-Type', 'multipart/form-data');
     const url = '/api/accounts/update/';
 
-    this.http.post(url, data)
+    this._http.post(url, data)
       .subscribe(res =>
         console.log(res)
       );
