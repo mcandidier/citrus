@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
-import { AuthService } from '../../services/auth.service';
-
-
+import { AuthService } from '../../../services/auth.service';
+import { validateAllFormFields } from '../../../common/utils';
 
 
 @Component({
@@ -46,7 +45,8 @@ export class RegisterComponent implements OnInit {
         this.errorMsg  = err;
         console.log(err);
       });
-
+    } else {
+      validateAllFormFields(this.form);
     }
   }
 }
