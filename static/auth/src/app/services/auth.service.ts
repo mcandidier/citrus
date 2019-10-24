@@ -32,6 +32,11 @@ export class AuthService {
   public isAuthenticated() {
     return this.getToken() != null ;
   }
+
+  public isAnonymous() {
+    return this.getToken() == null;
+  }
+
   public update(data: any) {
     // const headers = new HttpHeaders().set('Authorization', 'token 41567939f3d693fab8efc9ec4b24970ad437e656');
     // headers.set('Content-Type', 'multipart/form-data');
