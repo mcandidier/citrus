@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,  Validators } from '@angular/forms';
+import { StateService } from '@uirouter/angular';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   private password: FormControl;
   private errorMsg: Boolean;
 
-  constructor(private authService:AuthService ) { }
+  constructor(private authService: AuthService, private state: StateService ) { }
 
   ngOnInit() {
     this.username = new FormControl('', Validators.required);
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value)
         .subscribe( res => {
           this.authService.setToken(res['token']);
+          this.state.go('dashboard');
         }, error => {
           this.errorMsg = true;
         });

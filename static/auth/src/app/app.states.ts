@@ -37,9 +37,9 @@ export const dashboardState: Object = {
     onEnter: LoginRequired,
 };
 
-export const APP_STATES = [
+export const APP_STATES: Object[] = [
     loginState,
     registerState,
     updateDashboard,
-    dashboardState,
-];
+    dashboardState
+]
